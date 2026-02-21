@@ -104,15 +104,24 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
         bottom: -5px; left: 0; background-color: #CCFF00; transition: width 0.3s ease;
     }
     .msc-link:hover::after { width: 100%; }
-
-    /* --- 2. HAMBURGUESA (MÓVIL) --- */
+    
+    
+/* --- 2. HAMBURGUESA (MÓVIL) --- */
     .msc-hamburger {
         display: none; flex-direction: column; gap: 6px; cursor: pointer;
-        background: none; border: none; padding: 10px;
-        position: relative; /* Clave para el z-index */
-        z-index: 100001; /* Queda por encima de la cortina blanca (99990) */
-        outline: none; -webkit-tap-highlight-color: transparent;
+        
+        /* 🔥 ACÁ ESTÁ EL ESCUDO ANTI-ROJO 🔥 */
+        background-color: transparent !important; 
+        border: none !important; 
+        
+        padding: 10px;
+        position: relative; 
+        z-index: 100001; 
+        outline: none !important; 
+        -webkit-tap-highlight-color: transparent !important;
     }
+    
+    
     .msc-bar {
         width: 30px; height: 2px; background-color: #000; 
         transition: all 0.3s ease; display: block;
