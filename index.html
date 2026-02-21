@@ -68,13 +68,15 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				<div class="elementor-element elementor-element-b03abfa elementor-widget elementor-widget-html" data-id="b03abfa" data-element_type="widget" data-e-type="widget" data-widget_type="html.default">
 				<div class="elementor-widget-container">
 					<style>
+    /* --- SMOOTH SCROLL PARA TODA LA PÁGINA --- */
+    html { scroll-behavior: smooth; }
+
     /* --- 1. HEADER ESCRITORIO --- */
     .msc-header-container {
         position: fixed; top: 0; left: 0; width: 100%;
         padding: 40px 60px; 
         display: flex; justify-content: space-between; align-items: center;
-        /* ACÁ ESTÁ EL ARREGLO: Pasamos de 9999 a 100000 para que quede arriba del menú */
-        z-index: 100000; 
+        z-index: 100000; /* Bien alto para estar sobre el contenido */
         background: rgba(255, 255, 255, 0.95); 
         backdrop-filter: blur(10px);
         transition: all 0.4s ease;
@@ -86,6 +88,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
         font-family: 'Inter', sans-serif; font-weight: 800; font-size: 24px;
         color: #000; text-decoration: none; letter-spacing: -1px;
         position: relative; 
+        z-index: 100001; /* Aseguramos que quede sobre la cortina */
     }
     .msc-dot { color: #CCFF00; } 
 
@@ -106,6 +109,8 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     .msc-hamburger {
         display: none; flex-direction: column; gap: 6px; cursor: pointer;
         background: none; border: none; padding: 10px;
+        position: relative; /* Clave para el z-index */
+        z-index: 100001; /* Queda por encima de la cortina blanca (99990) */
         outline: none; -webkit-tap-highlight-color: transparent;
     }
     .msc-bar {
@@ -120,12 +125,19 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 
     /* --- 3. MENÚ MÓVIL (CORTINA BLANCA) --- */
     .msc-mobile-menu {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        /* ARREGLO DE ALTURA PARA CELULARES */
+        height: auto;
+        bottom: 0; 
+
         background-color: #FFFFFF; 
         display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 40px;
         transform: translateY(-100%); 
         transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-        z-index: 99990; /* Se queda debajo del header (100000) */
+        z-index: 99990; /* Debajo del header pero encima de la web */
     }
     .msc-mobile-menu.is-active { transform: translateY(0); }
 
